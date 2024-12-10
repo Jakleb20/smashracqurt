@@ -4,7 +4,7 @@ describe('Tournament API Tests', () => {
 
     // Test für die Route GET '/'
     it('GET / should return all tournaments', () => {
-        cy.request('/Tournaments').then((response) => {
+        cy.request('http://95.143.172.216:45920/Tournaments').then((response) => {
             expect(response.status).to.eq(200);
             expect(response.body).to.be.an('array'); // Annahme: Antwort ist eine Liste
         });
@@ -13,7 +13,7 @@ describe('Tournament API Tests', () => {
     // Test für die Route GET '/tByLetter'
     it('GET /tByLetter should return tournaments starting with specified letter', () => {
         cy.request({
-            url: '/Tournaments/tByLetter',
+            url: 'http://95.143.172.216:45920/Tournaments/tByLetter',
             qs: { letter: 'A' } // Beispiel: Turniere, die mit "A" beginnen
         }).then((response) => {
             expect(response.status).to.eq(200);
@@ -26,7 +26,7 @@ describe('Tournament API Tests', () => {
 
     it('GET /tByLetter should return 400 for invalid letter parameter', () => {
         cy.request({
-            url: '/Tournaments/tByLetter',
+            url: 'http://95.143.172.216:45920/Tournaments/tByLetter',
             qs: { letter: 'AB' }, // Ungültige Eingabe
             failOnStatusCode: false
         }).then((response) => {
@@ -38,7 +38,7 @@ describe('Tournament API Tests', () => {
     // Test für die Route GET '/tByPrize'
     it('GET /tByPrize should return tournaments with exact prize amount', () => {
         cy.request({
-            url: '/Tournaments/tByPrize',
+            url: 'http://95.143.172.216:45920/Tournaments/tByPrize',
             qs: { prize: 1500000 } // Beispiel: Turniere mit 1000 Preisgeld
         }).then((response) => {
             expect(response.status).to.eq(200);
@@ -51,7 +51,7 @@ describe('Tournament API Tests', () => {
 
     it('GET /tByPrize should return 400 for invalid prize parameter', () => {
         cy.request({
-            url: '/Tournaments/tByPrize',
+            url: 'http://95.143.172.216:45920/Tournaments/tByPrize',
             qs: { prize: 'abc' }, // Ungültige Eingabe
             failOnStatusCode: false
         }).then((response) => {
@@ -62,7 +62,7 @@ describe('Tournament API Tests', () => {
 
     it('GET /tByPrize should return 404 if no tournaments found with specified prize', () => {
         cy.request({
-            url: '/Tournaments/tByPrize',
+            url: 'http://95.143.172.216:45920/Tournaments/tByPrize',
             qs: { prize: 999999 }, // Annahme: Kein Turnier hat dieses Preisgeld
             failOnStatusCode: false
         }).then((response) => {
@@ -74,7 +74,7 @@ describe('Tournament API Tests', () => {
     // Test für die Route GET '/prize-range'
     it('GET /prize-range should return tournaments within the prize range', () => {
         cy.request({
-            url: '/Tournaments/prize-range',
+            url: 'http://95.143.172.216:45920/Tournaments/prize-range',
             qs: { minPrize: 500, maxPrize: 1500 } // Beispiel: Preisbereich 500 - 1500
         }).then((response) => {
             expect(response.status).to.eq(200);
@@ -87,7 +87,7 @@ describe('Tournament API Tests', () => {
 
     it('GET /prize-range should return 400 for invalid range parameters', () => {
         cy.request({
-            url: '/Tournaments/prize-range',
+            url: 'http://95.143.172.216:45920/Tournaments/prize-range',
             qs: { minPrize: 'abc', maxPrize: 'xyz' }, // Ungültige Eingaben
             failOnStatusCode: false
         }).then((response) => {
