@@ -1,32 +1,26 @@
-
 /// <reference types="cypress" />
 
-describe('switch pages', function() {
-    before(function() {
-        cy.visit('http://localhost:5173/HomePage/');
-    });
+describe('Switch Pages Test', function () {
+    it('logs in and switches between pages', function () {
+        // Besuche die Startseite
+        cy.visit('http://95.143.172.216:45921/HomePage/');
 
-    it('renders headers', function() {
-
-        // Login
+        // **Login**
         cy.get('input[placeholder="Benutzername"]').should('exist');
         cy.get('input[placeholder="Passwort"]').should('exist');
         cy.get('input[placeholder="Benutzername"]').type('root');
         cy.get('input[placeholder="Passwort"]').type('root');
         cy.get('button[id="submit"]').click();
-        
-        // Überprüfe, ob der Link "Alle Turniere" existiert
-        cy.get('a.nav-link').contains('Alle Turniere').should('exist');
 
-        // Klicke auf den Link "Alle Turniere"
+        // **Prüfen, ob Login erfolgreich war**
+        cy.get('h1').should('contain', 'Tennis-Racquet');
+        cy.get('button[id="logout"]').should('exist');
         cy.get('a.nav-link').contains('Alle Turniere').click();
-
-
-        // Überprüfe, ob der Link "Alle Turniere" existiert
-        cy.get('a.nav-link').contains('Startseite').should('exist');
-
-        // Klicke auf den Link "Alle Turniere"
-        cy.get('a.nav-link').contains('Startseite').click();
         
+        
+
+        // **Logout**
+        cy.get('button[id="logout"]').click();
+        cy.get('input[placeholder="Benutzername"]').should('exist');
     });
 });

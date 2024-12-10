@@ -1,25 +1,24 @@
 /// <reference types="cypress" />
 
-describe('template spec', function() {
-  before(function() {
-    cy.visit('http://localhost:5173/');
-  });
+describe('template spec', function () {
+  it('renders input fields', function () {
+    // Cypress verwendet die baseUrl automatisch bei cy.visit
+    cy.visit('http://95.143.172.216:45921/'); // Startseite besuchen (ergibt http://95.143.172.216:45921/)
 
-  it('renders input fields', function() {
+    // Überprüfen, ob Eingabefelder vorhanden sind
     cy.get('input[placeholder="Benutzername"]').should('exist');
     cy.get('input[placeholder="Passwort"]').should('exist');
 
-
-    // tries login with right credentials
+    // Login testen
     cy.get('input[placeholder="Benutzername"]').type('root');
     cy.get('input[placeholder="Passwort"]').type('root');
     cy.get('button[id="submit"]').click();
 
+    // Beispiel-Assertions für Startseite
+    cy.get('h1').should('contain', 'Tennis-Racquet');
+    cy.get('button[id="logout"]').should('exist');
 
-    // cy.get('h1').should('contain', 'Startseite'); // Beispiel-Assertion, passe sie an deine Seite an
-    // cy.get('button[id="logout"]').should('exist'); // Überprüfe, ob der Logout-Button vorhanden ist
-
-
+    // Logout testen
     cy.get('button[id="logout"]').click();
   });
 });
