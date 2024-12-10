@@ -2,6 +2,6 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:3005/tournaments',
+    baseUrl: 'http://95.143.172.216:45920',
   },
 });
