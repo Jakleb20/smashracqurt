@@ -1,0 +1,106 @@
+
+
+.live-score {
+    margin-top: 50px;
+    background-image: url('../../assets/tennis-background.png');
+    background-size: 100% auto;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 60px 0;
+    height: 50vh;
+    border-radius: 80px;
+    position: relative; /* Ensure the text container is positioned correctly */
+}
+
+.live-score .text-container {
+    background-color: rgba(128, 128, 128, 0.8); /* Gray background with some transparency */
+    padding: 20px;
+    border-radius: 20px; /* Adjust the radius as needed */
+    display: inline-block; /* Ensure the container fits the content */
+    position: absolute; /* Position the container within the .live-score */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to be truly centered */
+}
+
+.live-score h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.live-score h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.score {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* Next matches section */
+.next-matches {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.next-matches h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.matches-grid {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.match-card {
+    background-color: #8c8c8c;
+    padding: 10px;
+    border-radius: 8px;
+    width: 30%;
+    text-align: center;
+}
+
+.match-card time {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.match-card p {
+    font-size: 1.9rem;
+    margin-bottom: 10px;
+    background-image: linear-gradient(to right, #dae326, #556602);
+    border-radius: 8px; /* Adjust the radius as needed */
+    font-weight: bold;
+    padding: 10px; /* Optional: Add padding to ensure the text doesn't touch the edges */
+}
+
+.match-card span {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .matches-grid {
+        flex-direction: column;
+    }
+
+    .match-card {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Ensure the homepage takes full height and width */
+.homepage {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}

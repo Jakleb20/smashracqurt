@@ -1,0 +1,105 @@
+/* Allgemeines Reset für Margin und Padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Setzt das Box-Modell auf border-box, damit Padding und Border in der Gesamtbreite/Höhe berücksichtigt werden */
+}
+#ma{
+    margin-left: 400px;
+}
+
+/* Der Container soll sich über die gesamte Seite erstrecken und mittig positioniert werden */
+#tournament-form-container {
+    display: flex;
+    justify-content: center; /* Inhalt horizontal zentrieren */
+    align-items: center; /* Inhalt vertikal zentrieren */
+    height: 100vh; /* Volle Höhe des Bildschirms */
+    width: 100vw; /* Volle Breite des Bildschirms */
+    background-color: #fff; /* Weißer Hintergrund */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Verhindert Scrollen, falls das Hintergrundbild größer ist */
+}
+
+/* Formular Container */
+.tournament-form {
+    width: 100%;
+    max-width: 800px; /* Maximalbreite für große Bildschirme */
+    background-color: rgba(255, 255, 255, 0.9); /* Weißer Hintergrund mit Transparenz */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling für Titel */
+#tournament-title {
+    text-align: center;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Formelemente */
+.tournament-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f5f5f5; /* Hellgrauer Hintergrund */
+    color: #333;
+    transition: border-color 0.3s ease; /* Sanfter Übergang bei Fokussierung */
+}
+
+.tournament-form input::placeholder {
+    color: #888; /* Platzhalter in einer neutralen Farbe */
+}
+
+/* Fokussierungseffekt für Formulareingaben */
+.tournament-form input:focus {
+    outline: none;
+    border-color: #4CAF50; /* Tennis-ähnliches Grün beim Fokus */
+    background-color: #fff; /* Weißer Hintergrund beim Fokus */
+}
+
+/* Styling für Button */
+#add-tournament-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50; /* Tennis-ähnliches Grün */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease; /* Sanfter Übergang beim Hover */
+}
+
+#add-tournament-button:hover {
+    background-color: #45a049; /* Dunkleres Grün beim Hover */
+}
+
+/* Verbesserte Responsivität für kleinere Bildschirme */
+@media (max-width: 600px) {
+    #tournament-title {
+        font-size: 2rem; /* Kleinere Schriftgröße auf mobilen Geräten */
+    }
+
+    .tournament-form {
+        padding: 15px; /* Weniger Padding auf mobilen Geräten */
+    }
+
+    .tournament-form input {
+        padding: 8px; /* Weniger Padding in den Eingabefeldern */
+    }
+
+    #add-tournament-button {
+        padding: 10px; /* Weniger Padding auf mobilen Geräten */
+    }
+}

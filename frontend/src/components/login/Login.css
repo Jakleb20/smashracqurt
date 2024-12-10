@@ -1,0 +1,80 @@
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw; /* Verwende 100vw für volle Breite */
+    height: 100vh; /* Verwende 100vh für volle Höhe */
+    background-image: url('../../assets/image.png'); /* URL zum Hintergrundbild */
+    background-size: cover; /* Hintergrundbild deckt den gesamten Container ab */
+    background-position: center; /* Hintergrundbild zentriert */
+    position: absolute; /* Stelle sicher, dass der Container nicht vom Layout der Seite beeinflusst wird */
+    top: 0; /* Setze den Container auf den oberen Rand */
+    left: 0; /* Setze den Container auf den linken Rand */
+}
+
+/* Kartendesign für das Login-Formular */
+.login-card {
+    background-color: rgba(255, 255, 255, 0.8); /* Transparenter Hintergrund für bessere Lesbarkeit */
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Logo-Styling */
+.login-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Formular Styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Eingabefelder */
+.login-input {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    color: black;
+    background-color: #f9f9f9;
+}
+
+/* Button-Styling */
+.login-button {
+    padding: 15px;
+    margin: 20px 0;
+    background-color: #6a1b9a;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #4a148c;
+}
+
+/* Link für Passwort vergessen */
+.forgot-password {
+    text-decoration: none;
+    color: #6a1b9a;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Begrüßungstext */
+.hello {
+    color: black;
+}
