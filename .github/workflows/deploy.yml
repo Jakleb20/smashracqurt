@@ -42,7 +42,13 @@ jobs:
       - name: Deploy to Uberspace
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |          
+        run: |
+          
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H delphinus.uberspace.de >> ~/.ssh/known_hosts
+          
           
           # Dateien auf Uberspace hochladen
           scp -r ./backend/* kasmash1@delphinus.uberspace.de:/home/kasmash1/smashracqurt/backend/
