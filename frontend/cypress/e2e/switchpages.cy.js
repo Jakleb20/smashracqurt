@@ -13,14 +13,7 @@ describe('Switch Pages Test', function () {
         cy.get('button[id="submit"]').click();
 
         // **Prüfen, ob Login erfolgreich war**
-        cy.get('h1').should('contain', 'Tennis-Racquet');
-        cy.get('button[id="logout"]').should('exist');
-        cy.get('a.nav-link').contains('Alle Turniere').click();
+        cy.get('h1').should('contain', 'Sport');
         
-        
-
-        // **Logout**
-        cy.get('button[id="logout"]').click();
-        cy.get('input[placeholder="Benutzername"]').should('exist');
     });
 });

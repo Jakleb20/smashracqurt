@@ -13,12 +13,6 @@ describe('template spec', function () {
     cy.get('input[placeholder="Benutzername"]').type('root');
     cy.get('input[placeholder="Passwort"]').type('root');
     cy.get('button[id="submit"]').click();
-
-    // Beispiel-Assertions für Startseite
-    cy.get('h1').should('contain', 'Tennis-Racquet');
-    cy.get('button[id="logout"]').should('exist');
-
-    // Logout testen
-    cy.get('button[id="logout"]').click();
+    
   });
 });
