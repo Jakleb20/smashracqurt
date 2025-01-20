@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TournamentModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const TournamentSchema = new mongoose_1.Schema({
+    id: { type: Number, unique: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
     users: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'UserModel' }], // Referenz auf Benutzer

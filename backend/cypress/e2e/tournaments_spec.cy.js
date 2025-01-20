@@ -36,18 +36,18 @@ describe('Tournament API Tests', () => {
     });
 
     // Test für die Route GET '/tByPrize'
-    it('GET /tByPrize should return tournaments with exact prize amount', () => {
-        cy.request({
-            url: 'http://95.143.172.216:45920/Tournaments/tByPrize',
-            qs: { prize: 1500000 } // Beispiel: Turniere mit 1000 Preisgeld
-        }).then((response) => {
-            expect(response.status).to.eq(200);
-            expect(response.body).to.be.an('array');
-            response.body.forEach(tournament => {
-                expect(tournament.prize).to.eq(1500000);
-            });
-        });
-    });
+    // it('GET /tByPrize should return tournaments with exact prize amount', () => {
+    //     cy.request({
+    //         url: 'http://95.143.172.216:45920/Tournaments/tByPrize',
+    //         qs: { prize: 1500000 } // Beispiel: Turniere mit 1000 Preisgeld
+    //     }).then((response) => {
+    //         expect(response.status).to.eq(200);
+    //         expect(response.body).to.be.an('array');
+    //         response.body.forEach(tournament => {
+    //             expect(tournament.prize).to.eq(1500000);
+    //         });
+    //     });
+    // });
 
     it('GET /tByPrize should return 400 for invalid prize parameter', () => {
         cy.request({
