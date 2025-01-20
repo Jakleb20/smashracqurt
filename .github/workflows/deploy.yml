@@ -43,25 +43,28 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          
+          # SSH-Setup: Erstelle .ssh-Verzeichnis und füge den privaten Schlüssel hinzu
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          # Sicherstellen, dass der richtige Host zum "known_hosts" hinzugefügt wird
           ssh-keyscan -H delphinus.uberspace.de >> ~/.ssh/known_hosts
           
-          
-          # Dateien auf Uberspace hochladen
+          # Verhindere, dass der SSH-Agent andere Schlüssel verwendet:
+          unset SSH_AUTH_SOCK
+            
+           # Dateien auf Uberspace hochladen (Backend und Frontend)
           scp -r ./backend/* kasmash1@delphinus.uberspace.de:/home/kasmash1/smashracqurt/backend/
           scp -r ./frontend/* kasmash1@delphinus.uberspace.de:/home/kasmash1/smashracqurt/frontend/
-          
-          
-          ssh kasmash1@delphinus.uberspace.de "
+            
+            # Remote-Befehle für das Backend und Frontend ausführen
+          ssh -i ~/.ssh/id_rsa kasmash1@delphinus.uberspace.de "
             cd /home/kasmash1/smashracqurt/backend &&
             npm install &&
             supervisorctl restart backend
           "
-          
-          ssh kasmash1@delphinus.uberspace.de "
-             cd /home/kasmash1/smashracquet/frontend &&
-             supervisorctl restart frontend
+            
+          ssh -i ~/.ssh/id_rsa kasmash1@delphinus.uberspace.de "
+            cd /home/kasmash1/smashracqurt/frontend &&
+            supervisorctl restart frontend
           "
