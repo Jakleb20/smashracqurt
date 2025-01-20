@@ -26,18 +26,6 @@ jobs:
         run: |
           npm install
 
-      # 4. Tests im Frontend ausführen
-#      - name: Run frontend tests
-#        working-directory: ./frontend
-#        run: |
-#          npx cypress run
-
-      # 5. Tests im Backend ausführen
-#      - name: Run backend tests
-#        working-directory: ./backend
-#        run: |
-#          npm cypress run
-
       # 6. Deployment, falls alle Tests erfolgreich sind
       - name: Deploy to Uberspace
         env:
@@ -47,18 +35,18 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          
           # Sicherstellen, dass der richtige Host zum "known_hosts" hinzugefügt wird
           ssh-keyscan -H delphinus.uberspace.de >> ~/.ssh/known_hosts
-          
-            
-            # Remote-Befehle für das Backend und Frontend ausführen
-          ssh -i ~/.ssh/id_rsa kasmash1@delphinus.uberspace.de "
+
+          # Remote-Befehle für das Backend und Frontend ausführen
+          ssh -v -o IdentitiesOnly=yes -i ~/.ssh/id_rsa kasmash1@delphinus.uberspace.de "
             cd /home/kasmash1/smashracqurt/ &&
             git pull &&
             cd frontend &&
             npm install &&
             cd ../backend &&
             npm install &&
-            supervisorctl restart backend
+            supervisorctl restart backend &&
             supervisorctl restart frontend
           "
