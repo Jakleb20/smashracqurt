@@ -45,6 +45,7 @@ jobs:
             git pull &&
             cd frontend &&
             npm install &&
+            npx cypress run &&  # Führe Cypress-Tests auf dem Server aus
             cd ../backend &&
             npm install &&
             supervisorctl restart backend &&
