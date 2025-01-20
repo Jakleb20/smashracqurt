@@ -1,0 +1,61 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Repository klonen
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Abhängigkeiten für das Frontend installieren
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: |
+          npm install
+
+      # 3. Abhängigkeiten für das Backend installieren
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: |
+          npm install
+
+      # 4. Tests im Frontend ausführen
+#      - name: Run frontend tests
+#        working-directory: ./frontend
+#        run: |
+#          npx cypress run
+
+      # 5. Tests im Backend ausführen
+#      - name: Run backend tests
+#        working-directory: ./backend
+#        run: |
+#          npm cypress run
+
+      # 6. Deployment, falls alle Tests erfolgreich sind
+      - name: Deploy to Uberspace
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |          
+          
+          # Dateien auf Uberspace hochladen
+          scp -r ./backend/* kasmash1@delphinus.uberspace.de:/home/kasmash1/smashracqurt/backend/
+          scp -r ./frontend/* kasmash1@delphinus.uberspace.de:/home/kasmash1/smashracqurt/frontend/
+          
+          
+          ssh kasmash1@delphinus.uberspace.de "
+            cd /home/kasmash1/smashracqurt/backend &&
+            npm install &&
+            supervisorctl restart backend
+          "
+          
+          ssh kasmash1@delphinus.uberspace.de "
+             cd /home/kasmash1/smashracquet/frontend &&
+             supervisorctl restart frontend
+          "

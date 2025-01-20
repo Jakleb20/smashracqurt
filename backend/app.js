@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const { connectDB } = require('./src/db/utilService.js');
 const { initDB } = require('./src/db/DBService.js');
 connectDB();
-initDB();
+//initDB();
 
 app.use(cors({
     origin: '*', // Erlaubt Anfragen von allen Ursprüngen
