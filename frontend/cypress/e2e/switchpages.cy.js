@@ -3,7 +3,7 @@
 describe('Switch Pages Test', function () {
     it('logs in and switches between pages', function () {
         // Besuche die Startseite
-        cy.visit('http://95.143.172.216:45921/HomePage/');
+        cy.visit('http://95.143.172.216:45921/');
 
         // **Login**
         cy.get('input[placeholder="Benutzername"]').should('exist');
