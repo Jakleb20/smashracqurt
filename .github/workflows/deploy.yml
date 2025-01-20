@@ -50,21 +50,15 @@ jobs:
           # Sicherstellen, dass der richtige Host zum "known_hosts" hinzugefügt wird
           ssh-keyscan -H delphinus.uberspace.de >> ~/.ssh/known_hosts
           
-          # Verhindere, dass der SSH-Agent andere Schlüssel verwendet:
-          unset SSH_AUTH_SOCK
-            
-           # Dateien auf Uberspace hochladen (Backend und Frontend)
-          scp -r ./backend/* kasmash1@delphinus.uberspace.de:/home/kasmash1/smashracqurt/backend/
-          scp -r ./frontend/* kasmash1@delphinus.uberspace.de:/home/kasmash1/smashracqurt/frontend/
             
             # Remote-Befehle für das Backend und Frontend ausführen
           ssh -i ~/.ssh/id_rsa kasmash1@delphinus.uberspace.de "
-            cd /home/kasmash1/smashracqurt/backend &&
+            cd /home/kasmash1/smashracqurt/ &&
+            git pull &&
+            cd frontend &&
+            npm install &&
+            cd ../backend &&
             npm install &&
             supervisorctl restart backend
-          "
-            
-          ssh -i ~/.ssh/id_rsa kasmash1@delphinus.uberspace.de "
-            cd /home/kasmash1/smashracqurt/frontend &&
             supervisorctl restart frontend
           "
