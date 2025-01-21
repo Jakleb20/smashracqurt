@@ -1,11 +1,11 @@
-import {User} from "./User.ts";
-import {Match} from "./Match.ts";
+import {User} from "./User.tsx";
+import {Match} from "./Match.tsx";
 
 export interface Tournament {
-    description: string,
     id: number,
-    matches: Match[],
     name: string,
-    prize: number,
-    users: User[]
+    description: string,
+    users: User[],
+    matches: Match[],
+    prize: number
 }
