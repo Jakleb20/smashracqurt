@@ -6,7 +6,7 @@ import {mockUsers} from "../../mockdata/mockUsers";
 import {mockMatches} from "../../mockdata/mockMatches";
 import {TournamentModel} from "./TournamentModel";
 import {mockTournaments} from "../../mockdata/mockTournaments";
-import {MatchModel} from "./MatchModel";
+import {MatchModel} from "./Matchmodel";
 
 
 
