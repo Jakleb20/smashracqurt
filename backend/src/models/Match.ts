@@ -1,9 +1,13 @@
+import {Tournament} from "./Tournament";
+import {Player} from "./Player";
+
+
 export interface Match {
-    id: number,
-    player: string,
-    player2: string,
-    score1: number,
-    score2: number,
+    player: Player,
+    player2: Player,
+    score: [number, number][],
     date: string,
+    location:string,
+    durationMinutes: number,
     finished: boolean
 }

@@ -1,106 +1,115 @@
-
-
-.live-score {
-    margin-top: 50px;
-    background-image: url('../../assets/tennis-background.png');
-    background-size: 100% auto;
-    background-position: center;
-    color: white;
-    text-align: center;
-    padding: 60px 0;
-    height: 50vh;
-    border-radius: 80px;
-    position: relative; /* Ensure the text container is positioned correctly */
-}
-
-.live-score .text-container {
-    background-color: rgba(128, 128, 128, 0.8); /* Gray background with some transparency */
+/* General styles for the HomePage */
+#homepage {
+    font-family: Arial, sans-serif;
     padding: 20px;
-    border-radius: 20px; /* Adjust the radius as needed */
-    display: inline-block; /* Ensure the container fits the content */
-    position: absolute; /* Position the container within the .live-score */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust position to be truly centered */
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
 }
 
-.live-score h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.live-score h3 {
+#homepage h1 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.score {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-top: 1rem;
-}
-
-/* Next matches section */
-.next-matches {
-    text-align: center;
-    margin-top: 3rem;
-}
-
-.next-matches h2 {
-    font-size: 2rem;
+    color: #0074d9;
     margin-bottom: 20px;
-}
-
-.matches-grid {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-}
-
-.match-card {
-    background-color: #8c8c8c;
-    padding: 10px;
-    border-radius: 8px;
-    width: 30%;
     text-align: center;
 }
 
-.match-card time {
-    font-size: 1.2rem;
+#homepage h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-top: 30px;
+}
+
+#homepage p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Error message styles */
+#error {
+    color: #ff4136;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+}
+
+/* Dropdown styling */
+#tournament-select {
     display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#tournament-select:focus {
+    outline: none;
+    border-color: #0074d9;
+    box-shadow: 0 0 5px rgba(0, 116, 217, 0.5);
+}
+
+/* Matches section */
+#matches-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#matches-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+#matches-section li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fefefe;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#matches-section li strong {
+    display: block;
+    font-size: 1.1rem;
     margin-bottom: 5px;
 }
 
-.match-card p {
-    font-size: 1.9rem;
-    margin-bottom: 10px;
-    background-image: linear-gradient(to right, #dae326, #556602);
-    border-radius: 8px; /* Adjust the radius as needed */
-    font-weight: bold;
-    padding: 10px; /* Optional: Add padding to ensure the text doesn't touch the edges */
+#matches-section p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
 }
 
-.match-card span {
-    font-size: 1rem;
-    color: #ffffff;
+/* Loading spinner */
+#loading {
+    text-align: center;
+    font-style: italic;
+    color: #555;
 }
 
-/* Responsive Design */
+/* Responsive design */
 @media (max-width: 768px) {
-    .matches-grid {
-        flex-direction: column;
+    #homepage h1 {
+        font-size: 2rem;
     }
 
-    .match-card {
-        width: 80%;
-        margin-bottom: 20px;
+    #homepage h2 {
+        font-size: 1.5rem;
     }
-}
 
-/* Ensure the homepage takes full height and width */
-.homepage {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
+    #tournament-select {
+        width: 90%;
+    }
+
+    #matches-section li {
+        padding: 15px;
+    }
 }

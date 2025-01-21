@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Tournament} from "../../interface/Tournament.tsx";
+import {Tournament} from "../../interface/Tournament.ts";
 import './AddTurnier.css';
 import {TournamentService} from "../../Service/TournamentService.ts";
 
@@ -32,7 +32,6 @@ const AddTurnier = () => {
             setTournamentName('');
             setTournamentDescription('');
             setTournamentPrize(0);
-            
             alert("Turnier erfolgreich hinzugefügt!");
         } catch (error) {
             console.error("Fehler beim Hinzufügen des Turniers:", error);

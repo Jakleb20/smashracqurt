@@ -6,20 +6,25 @@ import {MatchModel} from "./Matchmodel";
 import {User} from "../models/User";
 import {Match} from "../models/Match";
 import {Tournament} from "../models/Tournament";
+import {PlayerModel} from "./PlayerModel";
+import {mockPlayers} from "../../mockdata/mockPlayers";
 
 
-export const initDB = async (): Promise<void> => {
+export const initDB = () => {
     try {
-        // Bereinigung der Datenbank
-        await UserModel.deleteMany();
-        await TournamentModel.deleteMany();
-        await MatchModel.deleteMany();
+        UserModel.deleteMany();
+        PlayerModel.deleteMany();
+        MatchModel.deleteMany();
+        TournamentModel.deleteMany();
 
-        await MatchModel.insertMany(mockMatches);
-        await UserModel.insertMany(mockUsers);
-        await TournamentModel.insertMany(mockTournaments)
+        PlayerModel.insertMany(mockPlayers);
+        UserModel.insertMany(mockUsers);
+        MatchModel.insertMany(mockMatches);
+        TournamentModel.insertMany(mockTournaments);
 
+        console.log("Mock data inserted successfully!");
     } catch (error) {
-        console.log("### error on inserting: ", error);
+        console.error("Error inserting mock data:", error);
+        process.exit(1);
     }
-}
+};
