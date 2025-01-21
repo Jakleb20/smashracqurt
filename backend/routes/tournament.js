@@ -73,7 +73,7 @@ router.get('/sortedByPrice', (req, res) => {
 router.get('/sortedByName', (req, res) => {
     var _a;
     const order = ((_a = req.query.order) === null || _a === void 0 ? void 0 : _a.toString()) || "asc";
-    const sortOrder = order === "asc" ? -1 : 1;
+    const sortOrder = order === "asc" ? 1 : -1;
     TournamentModel_1.TournamentModel.find().sort({ name: sortOrder })
         .then(tournaments => res.send(tournaments))
         .catch(err => res.status(500).send("Fehler beim Abrufen der Turniere: " + err.message));

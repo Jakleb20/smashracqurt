@@ -113,7 +113,7 @@ describe('Tournament API Tests', () => {
 
         cy.request({
             url: 'http://95.143.172.216:45920/Tournaments/sortedByName',
-            qs: { order: 'desc' } // Umgekehrte alphabetische Sortierung (Z-A)
+            qs: { order: 'desc' } // Umgekehrte alphabetische Sortierung (Z<<-A)
         }).then((response) => {
             expect(response.status).to.eq(200);
             expect(response.body).to.be.an('array');
