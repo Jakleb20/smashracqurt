@@ -3,7 +3,6 @@ import {Match} from "./Match";
 
 
 export interface User {
-    id: number;
     username: string,
     password: string,
     age: number,

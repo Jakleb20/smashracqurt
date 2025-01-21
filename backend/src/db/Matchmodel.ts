@@ -1,12 +1,13 @@
 import mongoose, { Schema } from "mongoose";
+import {PlayerModel, PlayerSchema} from "./PlayerModel";
 
-const MatchSchema: Schema = new Schema({
-    id: { type: Number, required: true },
-    player: { type: String, required: true }, // Referenz auf Benutzername
-    player2: { type: String, required: true },
-    score1: { type: Number, required: true },
-    score2: { type: Number, required: true },
+export const MatchSchema: Schema = new Schema({
+    player: {type: PlayerSchema, required: true},
+    player2: {type: PlayerSchema, required: true},
+    score: { type: [[Number]], required: true },
     date: { type: String, required: true },
+    location: { type: String, required: true },
+    durationMinutes: { type: Number, required: true },
     finished: { type: Boolean, required: true }
 });
 

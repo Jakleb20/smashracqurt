@@ -1,6 +1,4 @@
-import {mockTournaments} from "./mockUsers";
 import {Player} from "../src/models/Player";
-
 
 export const mockPlayers: Player[] = [{ firstname: "Roger", lastname: "Federer", country: "Switzerland" },
     {firstname: "Rafael", lastname: "Nadal", country: "Spain" },

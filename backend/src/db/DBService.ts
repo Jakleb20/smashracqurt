@@ -1,13 +1,13 @@
-import {UserModel} from "./UserModel";
-import {mockUsers, mockTournaments} from "../../mockdata/mockUsers";
-import {mockMatches} from "../../mockdata/mockUsers";
-import {TournamentModel} from "./TournamentModel";
-import {MatchModel} from "./Matchmodel";
-import {User} from "../models/User";
-import {Match} from "../models/Match";
-import {Tournament} from "../models/Tournament";
+import mongoose from "mongoose";
 import {PlayerModel} from "./PlayerModel";
 import {mockPlayers} from "../../mockdata/mockPlayers";
+import {UserModel} from "./UserModel";
+import {mockUsers} from "../../mockdata/mockUsers";
+import {mockMatches} from "../../mockdata/mockMatches";
+import {TournamentModel} from "./TournamentModel";
+import {mockTournaments} from "../../mockdata/mockTournaments";
+import {MatchModel} from "./MatchModel";
+
 
 
 export const initDB = () => {
