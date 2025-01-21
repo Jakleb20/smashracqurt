@@ -101,7 +101,7 @@ describe('Tournament API Tests', () => {
     it('GET /sortedByName should return tournaments sorted by name', () => {
         cy.request({
             url: 'http://95.143.172.216:45920/Tournaments/sortedByName',
-            qs: { order: 'asc' } // Alphabetische Sortierung (A-Z)
+            qs: { order: 'desc' } // Alphabetische Sortierung (A-Z)
         }).then((response) => {
             expect(response.status).to.eq(200);
             expect(response.body).to.be.an('array');
