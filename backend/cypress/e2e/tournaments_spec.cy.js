@@ -1,6 +1,8 @@
 // cypress/e2e/tournaments_spec.cy.js
 
 describe('Tournament API Tests', () => {
+    
+    
 
     // Test für die Route GET '/'
     it('GET / should return all tournaments', () => {
@@ -93,6 +95,32 @@ describe('Tournament API Tests', () => {
         }).then((response) => {
             expect(response.status).to.eq(400);
             expect(response.body).to.eq("Bitte gib gültige Zahlen als 'minPrize' und 'maxPrize' an.");
+        });
+    });
+
+    it('GET /sortedByName should return tournaments sorted by name', () => {
+        cy.request({
+            url: 'http://95.143.172.216:45920/Tournaments/sortedByName',
+            qs: { order: 'asc' } // Alphabetische Sortierung (A-Z)
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body).to.be.an('array');
+
+            // Überprüfen, ob die Namen alphabetisch sortiert sind
+            const names = response.body.map(tournament => tournament.name.toLowerCase());
+            expect(names).to.deep.equal([...names].sort());
+        });
+
+        cy.request({
+            url: 'http://95.143.172.216:45920/Tournaments/sortedByName',
+            qs: { order: 'desc' } // Umgekehrte alphabetische Sortierung (Z-A)
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body).to.be.an('array');
+
+            // Überprüfen, ob die Namen umgekehrt alphabetisch sortiert sind
+            const names = response.body.map(tournament => tournament.name.toLowerCase());
+            expect(names).to.deep.equal([...names].sort().reverse());
         });
     });
 });
