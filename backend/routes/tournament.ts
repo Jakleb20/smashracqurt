@@ -71,6 +71,7 @@ router.get('/sortedByPrice', (req: Request, res: Response) => {
         .catch(err => res.status(500).send("Fehler beim Abrufen der Turniere: " + err.message));
 });
 
+
 // http://localhost:3005/tournaments/sortedByName?order=asc
 router.get('/sortedByName', (req: Request, res: Response) => {
     const order = req.query.order?.toString() || "asc";
