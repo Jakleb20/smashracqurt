@@ -135,6 +135,7 @@ const Turniere = () => {
                     <label>Name:</label>
                     <input id="letterFirst"
                         type="text"
+                        placeholder={"Name"}   
                         value={name}
                            onChange={(e) => setName(e.target.value)}
                     />
@@ -144,6 +145,7 @@ const Turniere = () => {
                     <input
                         type="number"
                         value={minPrize}
+                        placeholder={"Min Preis"}
                         onChange={(e) => setMinPrize(e.target.value)}
                     />
                 </div>
