@@ -15,7 +15,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (username === 'root' && password === 'root') {
+        if (username === 'root' && password === 'Leon') {
             onLogin(); // Erfolgreiche Anmeldung
             navigate('/HomePage'); // Navigiere zur Startseite
         } else {
@@ -31,7 +31,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     alt="Logo"
                     className="login-logo"
                 />
-                <h1 className="hello">Halli Sportsfreund:In!</h1>
+                <h1 className="hello">Hallo Sportsfreund:In!</h1>
                 <form className="login-form" onSubmit={handleSubmit}>
                     <input
                         type="text"

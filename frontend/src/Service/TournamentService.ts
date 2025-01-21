@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Tournament} from "../interface/Tournament.tsx";
+import {Tournament} from "../interface/Tournament.ts";
 
 export class TournamentService {
     private static readonly BASE_URL: string = import.meta.env.VITE_BACKEND_URL;
@@ -66,7 +66,6 @@ export class TournamentService {
         console.log(response.data);
         return response.data;
     }
-
 
 
 

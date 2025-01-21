@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Tournament } from "../../interface/Tournament";
+import { Tournament } from "../../interface/Tournament.ts";
 import { TournamentService } from "../../Service/TournamentService";
 import './Turniere.css';
 

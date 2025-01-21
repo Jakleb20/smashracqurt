@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Match } from "../interface/Match.tsx";
+import {Match} from "../interface/Match.ts";
 
 export class MatchService {
     private static readonly BASE_URL: string = import.meta.env.VITE_BACKEND_URL;

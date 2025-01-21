@@ -1,5 +1,5 @@
 import axios from "axios";
-import {User} from "../interface/User.tsx";
+import {User} from "../interface/User.ts";
 
 export class UserService {
 

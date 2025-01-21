@@ -1,6 +1,5 @@
-import {Tournament} from "./Tournament";
-import {Match} from "./Match";
-
+import {Match} from "./Match.ts";
+import {Tournament} from "./Tournament.ts";
 
 export interface User {
     id: number;
