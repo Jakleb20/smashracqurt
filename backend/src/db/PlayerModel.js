@@ -23,15 +23,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TournamentModel = exports.TournamentSchema = void 0;
+exports.PlayerModel = exports.PlayerSchema = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const Matchmodel_1 = require("./Matchmodel");
-const UserModel_1 = require("./UserModel");
-exports.TournamentSchema = new mongoose_1.Schema({
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    prize: { type: Number, required: true },
-    users: { type: [UserModel_1.UserSchema], required: true },
-    matches: { type: [Matchmodel_1.MatchSchema], required: true }
+exports.PlayerSchema = new mongoose_1.Schema({
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
+    country: { type: String }
 });
-exports.TournamentModel = mongoose_1.default.model('TournamentModel', exports.TournamentSchema);
+exports.PlayerModel = mongoose_1.default.model('PlayerModel', exports.PlayerSchema);

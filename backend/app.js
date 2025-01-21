@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var tournamentRouter = require('./routes/tournament');
 var matchRouter = require('./routes/match');
+var playerRouter = require('./routes/players');
 
 var app = express();
 app.use(cors());
@@ -21,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const { connectDB } = require('./src/db/utilService.js');
 const { initDB } = require('./src/db/DBService.js');
 connectDB();
-//initDB();
+initDB();
 
 app.use(cors({
     origin: '*', // Erlaubt Anfragen von allen Ursprüngen
@@ -33,5 +34,6 @@ app.use(cors({
 app.use('/users', userRouter);
 app.use("/tournaments", tournamentRouter);
 app.use('/matches', matchRouter);
+app.use('/players', playerRouter);
 
 module.exports = app;

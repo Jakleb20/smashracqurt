@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -51,10 +60,56 @@ router.get('/prize-range', (req, res) => {
     })
         .catch(err => res.status(500).send("Fehler beim Abrufen der Turniere: " + err.message));
 });
-router.post('/', (req, res) => {
-    const tournament = req.body;
-    TournamentModel_1.TournamentModel.create(tournament)
-        .then(r => res.status(200).send(r))
-        .catch(e => res.status(400));
+// http://localhost:3005/tournaments/sortedByPrice?order=asc
+router.get('/sortedByPrice', (req, res) => {
+    var _a;
+    const order = ((_a = req.query.order) === null || _a === void 0 ? void 0 : _a.toString()) || "asc";
+    const sortOrder = order === "asc" ? 1 : -1;
+    TournamentModel_1.TournamentModel.find().sort({ prize: sortOrder })
+        .then(tournaments => res.send(tournaments))
+        .catch(err => res.status(500).send("Fehler beim Abrufen der Turniere: " + err.message));
 });
+// http://localhost:3005/tournaments/sortedByName?order=asc
+router.get('/sortedByName', (req, res) => {
+    var _a;
+    const order = ((_a = req.query.order) === null || _a === void 0 ? void 0 : _a.toString()) || "asc";
+    const sortOrder = order === "asc" ? 1 : -1;
+    TournamentModel_1.TournamentModel.find().sort({ name: sortOrder })
+        .then(tournaments => res.send(tournaments))
+        .catch(err => res.status(500).send("Fehler beim Abrufen der Turniere: " + err.message));
+});
+// http://localhost:3005/tournaments/add
+router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, description, users, matches, prize } = req.body;
+        // Validierung der Eingaben
+        if (!name || typeof name !== 'string') {
+            return res.status(400).send("Bitte gib einen gültigen 'name' an.");
+        }
+        if (!description || typeof description !== 'string') {
+            return res.status(400).send("Bitte gib eine gültige 'description' an.");
+        }
+        if (isNaN(prize) || typeof prize !== 'number') {
+            return res.status(400).send("Bitte gib eine gültige Zahl als 'prize' an.");
+        }
+        // Höchste existierende ID abrufen
+        const lastTournament = yield TournamentModel_1.TournamentModel.findOne().sort({ id: -1 });
+        const nextId = lastTournament ? lastTournament.id + 1 : 1;
+        // Neues Turnier mit automatisch generierter ID erstellen
+        const newTournament = new TournamentModel_1.TournamentModel({
+            id: nextId,
+            name,
+            description,
+            users: users || [],
+            matches: matches || [],
+            prize,
+        });
+        const savedTournament = yield newTournament.save();
+        res.status(201).send(savedTournament);
+    }
+    catch (error) {
+        console.error("Fehler beim Hinzufügen des Turniers:", error);
+        res.status(500).send("Interner Serverfehler");
+    }
+}));
 module.exports = router;
