@@ -32,6 +32,7 @@ const AddTurnier = () => {
             setTournamentName('');
             setTournamentDescription('');
             setTournamentPrize(0);
+            
             alert("Turnier erfolgreich hinzugefügt!");
         } catch (error) {
             console.error("Fehler beim Hinzufügen des Turniers:", error);
