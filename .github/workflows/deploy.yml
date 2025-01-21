@@ -48,6 +48,7 @@ jobs:
             npx cypress run &&  # Führe Cypress-Tests auf dem Server aus
             cd ../backend &&
             npm install &&
+            npx cypress run &&
             supervisorctl restart backend &&
             supervisorctl restart frontend
           "
