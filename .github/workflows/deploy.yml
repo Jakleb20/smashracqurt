@@ -28,6 +28,7 @@ jobs:
 
       # 6. Deployment, falls alle Tests erfolgreich sind
       - name: Deploy to Uberspace
+        continue-on-error: false
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
@@ -53,4 +54,4 @@ jobs:
             npx cypress run &&  # Führe Cypress-Tests nach Neustart aus
             cd ../backend &&
             npx cypress run
-          "
+          "      
