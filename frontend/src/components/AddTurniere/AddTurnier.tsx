@@ -35,7 +35,7 @@ const AddTurnier = () => {
             alert("Turnier erfolgreich hinzugefügt!");
         } catch (error) {
             console.error("Fehler beim Hinzufügen des Turniers:", error);
-            alert("Fehler beim Hinzufügen des Turniers.");
+            alert("Turnier gibt es bereits.");
         }
     };
 

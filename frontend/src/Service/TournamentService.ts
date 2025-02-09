@@ -67,6 +67,15 @@ export class TournamentService {
         return response.data;
     }
 
+    // Delete tournament by name
+    public static async deleteTournament(name: string): Promise<Tournament> {
+        const response = await axios.delete<Tournament>(
+            `${this.BASE_URL}/tournaments/${name}`
+        );
+        console.log(response.data);
+        return response.data;
+    }
+
 
 
 }

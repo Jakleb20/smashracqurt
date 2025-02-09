@@ -128,6 +128,16 @@ const Turniere = () => {
         fetchTournaments();
     };
 
+    const handleDelete = async (name: string) => {
+        try {
+            await TournamentService.deleteTournament(name);
+            fetchTournaments();
+        } catch (error) {
+            console.error("Fehler beim Löschen des Turniers:", error);
+            alert("Fehler beim Löschen des Turniers.");
+        }
+    }
+
     return (
         <div id="tournament-container">
             <div className="filter-sort-controls">
@@ -190,6 +200,7 @@ const Turniere = () => {
                     {filteredTournaments.map((tournament) => (
                         <li id="tournament-list-item"  key={tournament.id}>
                             <strong>{tournament.name}</strong>: {tournament.description} Preis: {tournament.prize}€
+                            <button onClick={() => handleDelete(tournament.name)}>Löschen</button>
                         </li>
                     ))}
                 </ul>

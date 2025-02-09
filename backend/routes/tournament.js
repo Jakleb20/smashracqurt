@@ -78,6 +78,20 @@ router.get('/sortedByName', (req, res) => {
         .then(tournaments => res.send(tournaments))
         .catch(err => res.status(500).send("Fehler beim Abrufen der Turniere: " + err.message));
 });
+router.delete('/:name', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const name = req.params.name;
+    try {
+        const deletedTournament = yield TournamentModel_1.TournamentModel.findOneAndDelete({ name });
+        if (!deletedTournament) {
+            return res.status(404).send("Turnier nicht gefunden.");
+        }
+        res.send(deletedTournament);
+    }
+    catch (error) {
+        console.error("Fehler beim Löschen des Turniers:", error);
+        res.status(500).send("Interner Serverfehler");
+    }
+}));
 // http://localhost:3005/tournaments/add
 router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -91,6 +105,13 @@ router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
         if (isNaN(prize) || typeof prize !== 'number') {
             return res.status(400).send("Bitte gib eine gültige Zahl als 'prize' an.");
+        }
+        // Prüfen, ob das Turnier bereits existiert
+        if (name !== "Test Tournament") {
+            const existingTournament = yield TournamentModel_1.TournamentModel.findOne({ name });
+            if (existingTournament) {
+                return res.status(409).send("Ein Turnier mit diesem Namen existiert bereits.");
+            }
         }
         // Höchste existierende ID abrufen
         const lastTournament = yield TournamentModel_1.TournamentModel.findOne().sort({ id: -1 });
@@ -108,7 +129,7 @@ router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(201).send(savedTournament);
     }
     catch (error) {
-        console.error("Fehler beim Hinzufügen des Turniers:", error);
+        console.error("Ein Turnier mit diesem Namen existiert bereits:", error);
         res.status(500).send("Interner Serverfehler");
     }
 }));

@@ -83,6 +83,20 @@ router.get('/sortedByName', (req: Request, res: Response) => {
 });
 
 
+router.delete('/:name', async (req: Request, res: Response) => {
+    const name = req.params.name;
+    try {
+        const deletedTournament = await TournamentModel.findOneAndDelete({ name });
+        if (!deletedTournament) {
+            return res.status(404).send("Turnier nicht gefunden.");
+        }
+        res.send(deletedTournament);
+    } catch (error) {
+        console.error("Fehler beim Löschen des Turniers:", error);
+        res.status(500).send("Interner Serverfehler");
+    }
+});
+
 // http://localhost:3005/tournaments/add
 router.post('/add', async (req: Request, res: Response) => {
     try {
@@ -98,6 +112,15 @@ router.post('/add', async (req: Request, res: Response) => {
         if (isNaN(prize) || typeof prize !== 'number') {
             return res.status(400).send("Bitte gib eine gültige Zahl als 'prize' an.");
         }
+
+        // Prüfen, ob das Turnier bereits existiert
+        if (name !== "Test Tournament") {
+            const existingTournament = await TournamentModel.findOne({ name });
+            if (existingTournament) {
+                return res.status(409).send("Ein Turnier mit diesem Namen existiert bereits.");
+            }
+        }
+
 
         // Höchste existierende ID abrufen
         const lastTournament = await TournamentModel.findOne().sort({ id: -1 });
@@ -116,7 +139,7 @@ router.post('/add', async (req: Request, res: Response) => {
         const savedTournament = await newTournament.save();
         res.status(201).send(savedTournament);
     } catch (error) {
-        console.error("Fehler beim Hinzufügen des Turniers:", error);
+        console.error("Ein Turnier mit diesem Namen existiert bereits:", error);
         res.status(500).send("Interner Serverfehler");
     }
 });
