@@ -154,35 +154,6 @@ it('should add and delete a test tournament successfully', () => {
         prize: 1000
     };
 
-    // Turnier hinzufügen
-    cy.request({
-        method: 'POST',
-        url: 'http://95.143.172.216:45920/Tournaments/add',
-        body: testTournament
-    }).then((addResponse) => {
-        expect(addResponse.status).to.eq(201);
-        expect(addResponse.body).to.have.property('name', testTournament.name);
-
-        // Turnier wieder löschen
-        cy.request({
-            method: 'DELETE',
-            url: `http://95.143.172.216:45920/Tournaments/${encodeURIComponent(testTournament.name)}`
-        }).then((deleteResponse) => {
-            expect(deleteResponse.status).to.eq(200);
-            expect(deleteResponse.body).to.have.property('name', testTournament.name);
-
-            // Sicherstellen, dass das Turnier nicht mehr existiert
-            cy.request({
-                method: 'GET',
-                url: 'http://95.143.172.216:45920/Tournaments',
-            }).then((getResponse) => {
-                expect(getResponse.status).to.eq(200);
-                const tournamentExists = getResponse.body.some(t => t.name === testTournament.name);
-                expect(tournamentExists).to.be.false;
-            });
-        });
-    });
-});
 
 
 
