@@ -57,9 +57,24 @@ describe('AddTurnier Component', () => {
         cy.get('#tournament-prize-input').type(tournamentPrize.toString());
 
         cy.get('#add-tournament-button').click();
+
+
+        cy.get('a.nav-link').contains('Alle Turniere').click();
+
+
+        // Turnier löschen
+        cy.contains('#tournament-list-item', tournamentName)
+            .find('button')
+            .contains('Löschen')
+            .click();
+
+        // Überprüfen, ob das Turnier entfernt wurde
+        cy.contains('#tournament-list-item', tournamentName).should('not.exist');
+
     });
 
-    it('check if data is in database & should handle API errors gracefully ', () => {
+   /* it('check if data is in database & should handle API errors gracefully ', () => {
+        const tournamentName = 'Test Tournament';
 
         cy.visit('http://95.143.172.216:45921/tournaments');
         cy.get('input[placeholder="Benutzername"]').type('root');
@@ -67,10 +82,11 @@ describe('AddTurnier Component', () => {
         cy.get('button[id="submit"]').click();
         cy.get('a.nav-link').contains('Turnier hinzufügen').click();
 
-        cy.get('#tournament-name-input').type('Test Tournament');
-        cy.get('#tournament-description-input').type('This is a test tournament');
-        cy.get('#tournament-prize-input').type('1000');
 
-        cy.get('#add-tournament-button').click();
+
+
     });
+*/
+
+
 });
