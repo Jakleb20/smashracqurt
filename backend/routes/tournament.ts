@@ -142,18 +142,8 @@ router.post('/add', async (req: Request, res: Response) => {
         console.error("Ein Turnier mit diesem Namen existiert bereits:", error);
         res.status(500).send("Interner Serverfehler");
     }
+
 });
-
-// Test für das Hinzufügen und Löschen eines Turniers
-it('should add and delete a test tournament successfully', () => {
-    const testTournament = {
-        name: "Test Tournament",
-        description: "Dies ist ein Test-Turnier",
-        users: [],
-        matches: [],
-        prize: 1000
-    };
-
 
 
 

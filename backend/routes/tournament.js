@@ -133,14 +133,4 @@ router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(500).send("Interner Serverfehler");
     }
 }));
-// Test für das Hinzufügen und Löschen eines Turniers
-it('should add and delete a test tournament successfully', () => {
-    const testTournament = {
-        name: "Test Tournament",
-        description: "Dies ist ein Test-Turnier",
-        users: [],
-        matches: [],
-        prize: 1000
-    };
-    module.exports = router;
-});
+module.exports = router;
