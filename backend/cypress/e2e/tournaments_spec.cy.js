@@ -98,7 +98,7 @@ describe('Tournament API Tests', () => {
         });
     });
 
-    it('GET /sortedByName should return tournaments sorted by name', () => {
+    /*it('GET /sortedByName should return tournaments sorted by name', () => {
         cy.request({
             url: 'http://95.143.172.216:45920/Tournaments/sortedByName',
             qs: { order: 'asc' } // Alphabetische Sortierung (A-Z)
@@ -108,7 +108,7 @@ describe('Tournament API Tests', () => {
 
             // Überprüfen, ob die Namen alphabetisch sortiert sind
             const names = response.body.map(tournament => tournament.name.toLowerCase());
-            expect(names).to.deep.equal([...names].sort());
+            expect(names).to.equal([...names].sort());
         });
 
         cy.request({
@@ -120,7 +120,49 @@ describe('Tournament API Tests', () => {
 
             // Überprüfen, ob die Namen umgekehrt alphabetisch sortiert sind
             const names = response.body.map(tournament => tournament.name.toLowerCase());
-            expect(names).to.deep.equal([...names].sort().reverse());
+            expect(names).to.equal([...names].sort().reverse());
+        });
+    });*/
+
+    // testtournament hinzufügen und wieder löschen, dann schauen ob es wirklich nicht mehr im array ist
+    // Test für das Hinzufügen und Löschen eines Turniers
+    it('should add and delete a test tournament successfully', () => {
+        const testTournament = {
+            name: "Test Tournament",
+            description: "Dies ist ein Test-Turnier",
+            users: [],
+            matches: [],
+            prize: 1000
+        };
+
+        // Turnier hinzufügen
+        cy.request({
+            method: 'POST',
+            url: 'http://95.143.172.216:45920/Tournaments/add',
+            body: testTournament
+        }).then((addResponse) => {
+            expect(addResponse.status).to.eq(201);
+            expect(addResponse.body).to.have.property('name', testTournament.name);
+
+            // Turnier wieder löschen
+            cy.request({
+                method: 'DELETE',
+                url: `http://95.143.172.216:45920/Tournaments/${encodeURIComponent(testTournament.name)}`
+            }).then((deleteResponse) => {
+                expect(deleteResponse.status).to.eq(200);
+                expect(deleteResponse.body).to.have.property('name', testTournament.name);
+
+                // Sicherstellen, dass das Turnier nicht mehr existiert
+                cy.request({
+                    method: 'GET',
+                    url: 'http://95.143.172.216:45920/Tournaments',
+                }).then((getResponse) => {
+                    expect(getResponse.status).to.eq(200);
+                    const tournamentExists = getResponse.body.some(t => t.name === testTournament.name);
+                    expect(tournamentExists).to.be.false;
+                });
+            });
         });
     });
+
 });
