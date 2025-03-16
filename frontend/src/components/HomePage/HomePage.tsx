@@ -18,7 +18,7 @@ const HomePage = () => {
             try {
                 const fetchedTournaments = await TournamentService.getTournaments();
                 setTournaments(fetchedTournaments);
-            } catch (err: any) {
+            } catch (err) {
                 setError("Failed to fetch tournaments");
                 console.error(err);
             } finally {
@@ -50,6 +50,7 @@ const HomePage = () => {
                 }}
             >
                 <option value="">Select a tournament</option>
+
                 {tournaments.map((tournament) => (
                     <option key={tournament._id} value={tournament._id}>
                         {tournament.name}
