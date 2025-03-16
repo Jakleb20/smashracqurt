@@ -48,6 +48,7 @@ jobs:
             npm install &&
             cd ../backend &&
             npm install &&
+            cd .. && cd .. &&
             supervisorctl restart backend &&
             supervisorctl restart frontend &&
             cd ../frontend &&
