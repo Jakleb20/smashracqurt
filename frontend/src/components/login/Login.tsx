@@ -31,8 +31,9 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     alt="Logo"
                     className="login-logo"
                 />
-                <h1 className="hello">Hallo Sportsfreund:In!</h1>
-                <form className="login-form" onSubmit={handleSubmit}>
+                <h1 className="hello">
+                    Viel Glück beim Review {/* Hallo Sportsfreund:In! */}
+                </h1>                <form className="login-form" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="Benutzername"
