@@ -51,7 +51,8 @@ jobs:
             cd .. && cd .. &&
             supervisorctl restart backend &&
             supervisorctl restart frontend &&
-            cd ../frontend &&
+            cd smashracqurt &&
+            cd frontend &&
             npx cypress run &&  # Führe Cypress-Tests nach Neustart aus
             cd ../backend &&
             npx cypress run
