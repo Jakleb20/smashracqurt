@@ -17,7 +17,7 @@ const Header = () => {
         <div>
             <nav className="navbar">
                 <div className="left-section">
-                    <h1>Leon hat es geschafft</h1>
+                    <h1>Leon hat es vielleicht geschafft</h1>
                     <br/>
                 </div>
                 <div className="center-section">
