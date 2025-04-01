@@ -49,9 +49,8 @@ jobs:
             cd ../backend &&
             npm install &&
             cd .. && cd .. &&
-          supervisorctl -c ~/supervisord.conf &&
-          restart backend2 &&
-          restart fronted2 &&
+          supervisorctl -c ~/supervisord.conf restart backend2 &&
+          supervisorctl -c ~/supervisord.conf restart frontend2 &&
           
             cd smashracqurt2 &&
             cd frontend &&
