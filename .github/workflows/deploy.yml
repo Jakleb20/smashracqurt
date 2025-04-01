@@ -42,13 +42,13 @@ jobs:
 
           # Remote-Befehle für das Backend und Frontend ausführen
           ssh -v -o IdentitiesOnly=yes -i ~/.ssh/id_rsa kasmash1@delphinus.uberspace.de "
-            cd /home/kasmash1/smashracqurt2/ &&
+            cd /home/kasmash1/smashracqurt/ &&
             git pull &&
             cd frontend &&
             npm install &&
             cd ../backend &&
             npm install &&
             cd .. && cd .. &&
-          supervisorctl -c ~/supervisord.conf restart backend2 &&
-          supervisorctl -c ~/supervisord.conf restart frontend2
+          supervisorctl -c ~/supervisord.conf restart backend &&
+          supervisorctl -c ~/supervisord.conf restart frontend
           "      
