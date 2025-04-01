@@ -42,16 +42,18 @@ jobs:
 
           # Remote-Befehle für das Backend und Frontend ausführen
           ssh -v -o IdentitiesOnly=yes -i ~/.ssh/id_rsa kasmash1@delphinus.uberspace.de "
-            cd /home/kasmash1/smashracqurt/ &&
+            cd /home/kasmash1/smashracqurt2/ &&
             git pull &&
             cd frontend &&
             npm install &&
             cd ../backend &&
             npm install &&
             cd .. && cd .. &&
-            supervisorctl restart backend &&
-            supervisorctl restart frontend &&
-            cd smashracqurt &&
+          supervisorctl -c ~/supervisord.conf &&
+          restart backend2 &&
+          restart fronted2 &&
+          
+            cd smashracqurt2 &&
             cd frontend &&
             npx cypress run &&  # Führe Cypress-Tests nach Neustart aus
             cd ../backend &&
