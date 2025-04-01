@@ -32,7 +32,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     className="login-logo"
                 />
                 <h1 className="hello">
-                    Supervisord schmiert ab {/* Hallo Sportsfreund:In! */}
+                    Supervisord schmiert ab !!!!! {/* Hallo Sportsfreund:In! */}
                 </h1>                <form className="login-form" onSubmit={handleSubmit}>
                     <input
                         type="text"

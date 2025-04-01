@@ -50,5 +50,10 @@ jobs:
             npm install &&
             cd .. && cd .. &&
           supervisorctl -c ~/supervisord.conf restart backend &&
-          supervisorctl -c ~/supervisord.conf restart frontend
+          supervisorctl -c ~/supervisord.conf restart frontend &&
+          cd smashracqurt &&
+            cd frontend &&
+            npx cypress run &&  # Führe Cypress-Tests nach Neustart aus
+            cd ../backend &&
+            npx cypress run
           "      
