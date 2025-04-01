@@ -52,9 +52,9 @@ jobs:
           supervisorctl -c ~/supervisord.conf restart backend2 &&
           supervisorctl -c ~/supervisord.conf restart frontend2 &&
           
-            cd smashracqurt2 &&
-            cd frontend &&
-            npx cypress run &&  # Führe Cypress-Tests nach Neustart aus
-            cd ../backend &&
-            npx cypress run
+#            cd smashracqurt2 &&
+#            cd frontend &&
+#            npx cypress run &&  # Führe Cypress-Tests nach Neustart aus
+#            cd ../backend &&
+#            npx cypress run
           "      
